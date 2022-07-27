@@ -1,0 +1,41 @@
+<section class="vh-100">
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-80">
+			<div class="col-12 col-md-10 col-lg-8 col-xl-8 text-center">
+				<div class="card bg-light shadow2-strong"
+					style="border-radius: 1rem;">
+					<div class="card-body p-5 text-center">
+						<h3 class="text-secondary">
+							<strong>{{action}}</strong>
+						</h3>
+						<form id="myform" ng-submit="submit()">
+							<div class="form-outline mb-4">
+								<input type="text" class="form-control"
+									placeholder="Username" ng-model="loginrequest.username" required />
+							</div>
+							<div class="form-outline mb-4">
+								<input type="password" id="typePasswordX-2"
+									class="form-control" placeholder="Password"
+									ng-model="loginrequest.password" required />
+							</div>
+							<div class="row pe-3 ps-3">
+								<button class="btn btn-primary btn-rounded btn-md " type="submit"
+									form="myform">{{action}}</button>
+								<hr class="my-4">
+							</div>
+
+						</form>
+						<div>
+							<div class="alert alert-danger" role="alert" ng-if="error">
+								{{message}}</div>
+							<p class="mb-0">
+								{{content}} <a  class="select" ng-click="goto()"
+									class="text-primary fw-bold">{{path}}</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

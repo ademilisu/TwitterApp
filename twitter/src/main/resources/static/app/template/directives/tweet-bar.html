@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between mt-2 me-4 ms-4">
+	<a class="btn btn-white text-secondary" ng-click="comment()"> <i
+		class="fa-solid fa-comment"></i> {{tweet.commentNo}}
+	</a> <a class="btn btn-white text-secondary" ng-click="retweet()"> <i
+		class="fa-solid fa-retweet"
+		ng-class="retweeted ? 'text-success' : 'text-secondary'"></i>
+		{{tweet.retweetNo}}
+	</a> <a class="btn btn-white text-secondary" ng-click="quote()"><i
+		class="fa-solid fa-quote-left"></i></a> <a
+		class="btn btn-white text-secondary" ng-click="like()"> <i
+		class="fa-solid fa-heart"
+		ng-class="liked ? 'text-danger' : 'text-secondary'"></i>
+		{{tweet.likeNo}}
+	</a>
+</div>

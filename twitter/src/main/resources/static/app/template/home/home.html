@@ -1,0 +1,34 @@
+<div class="modal-dialog modal-md mt-0">
+	<div class="modal-content">
+		<div class="modal-body bg-white">
+			<new-tweet-content tweet='newTweet'></new-tweet-content>
+		</div>
+	</div>
+</div>
+<div class="row" scroll-on-bottom="loadPage()">
+	<div ng-repeat="item in list | orderBy: '-tweet.created'">
+		<list-content item="item" comment=commentModal(item)
+			quote="quoteModal(item)" delete="delete(item)"></list-content>
+	</div>
+
+</div>
+<div class="modal fade" id="commentModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-body bg-white">
+				<reply-content item="item" type="type"></reply-content>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="quoteModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-body bg-white">
+				<reply-content item="item" type="type"></reply-content>
+			</div>
+		</div>
+	</div>
+</div>

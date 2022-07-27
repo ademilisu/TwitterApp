@@ -1,0 +1,54 @@
+<div class="modal-dialog modal-md mt-0 mb-0">
+	<div class="modal-content myHover border border-1">
+		<div class="modal-body">
+			<div class="container">
+				<div class="text-start" ng-show="item.tweet.type == 'RETWEET'">
+					<h6 class="text-muted">
+						<i class="fa-solid fa-retweet"></i> {{item.tweet.account.name}}
+						retweeted
+					</h6>
+					<message-template ng-click="goToTweet(item.tweet.target)"
+						tweet="item.tweet.target" profileimagesize="25" disabletext="true"
+						hidedismiss="hidecancel" resize="true" cancel="delete()">
+					</message-template>
+					<tweet-bar tweet="item.tweet.target" like="like()"
+						liked="item.liked" retweeted="item.retweeted" retweet="retweet()"
+						comment="comment()" quote="quote()"></tweet-bar>
+				</div>
+
+				<div ng-show="item.tweet.type == 'TWEET'">
+					<message-template ng-click="goToTweet(item.tweet)"
+						tweet="item.tweet" limit="limit" profileimagesize="25"
+						resize="true" hidedismiss="hidecancel" cancel="delete()"
+						disabletext="true"></message-template>
+					<tweet-bar tweet="item.tweet" like="like()" liked="item.liked"
+						retweeted="item.retweeted" retweet="retweet()" comment="comment()"
+						quote="quote()"></tweet-bar>
+				</div>
+
+				<div class="text-start"
+					ng-show="item.tweet.type == 'QUOTE' || item.tweet.type == 'COMMENT'">
+					<message-template ng-click="goToTweet(item.tweet)"
+						tweet="item.tweet" profileimagesize="25" resize="true"
+						disabletext="true" hidedismiss="hidecancel" cancel="delete()"></message-template>
+					<div ng-hide="commentpage"
+						class="ms-1 me-1 border border-2 myBorder">
+						<div class="ms-3 me-3 mt-2 mb-2">
+							<message-template ng-click="goToTweet(item.tweet.target)"
+								tweet="item.tweet.target" profileimagesize="15"
+								disabletext="true" hidedismiss="true"></message-template>
+						</div>
+					</div>
+					<tweet-bar tweet="item.tweet" like="like()" liked="item.liked"
+						retweeted="item.retweeted" retweet="retweet()" comment="comment()"
+						quote="quote()"></tweet-bar>
+				</div>
+			</div>
+		</div>
+		<div ng-show="item.tweet.commentNo != 0"
+			class="model-footer text-start myFooter" ng-click="goToTweet()">
+			<p class="ms-5 mt-2 text-primary">Show replies</p>
+		</div>
+	</div>
+</div>
+

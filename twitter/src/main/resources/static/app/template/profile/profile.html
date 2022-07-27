@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+	<div style="width: 65%; height: 300px;">
+		<div class="row justify-content-center">
+			<img class="rounded-circle"
+				ng-src="{{profile.image.photo || '/app/img/profile.png'}}"
+				style="width: 250px; height: 225px;">
+		</div>
+		<div class="d-flex justify-content-between">
+			<div class="d-flex flex-row align-items-center">
+				<p class="text-dark" style="font-size: 20px;">{{profile.name}}</p>
+			</div>
+			<div class="d-flex justify-content-end" ng-hide="hidedismiss">
+				<div ng-show="!me">
+					<button ng-show="!isFollow"
+						class="btn btn-outline-primary rounded-pill" style="width: 100px;"
+						ng-click="follow()">Follow</button>
+					<button ng-show="isFollow"
+						class="btn btn-outline-danger rounded-pill" style="width: 100px;"
+						ng-click="unfollow()">Unfollow</button>
+				</div>
+				<button ng-show="me" type="button"
+					class="btn text-secondary rounded-pill" data-bs-toggle="modal"
+					data-bs-target="#profileModal">
+					<i class="fa-solid fa-gear"></i> Edit
+				</button>
+			</div>
+		</div>
+		<div class="d-flex justify-content-between">
+			<div class="d-flex flex-row align-items-center">
+				<p class="text-secondary me-4 select" style="font-size: 16px;">
+					<a class="myA" ng-click="goToRelation('following')">{{profile.followNo}}
+						Following</a>
+				</p>
+				<p class="text-secondary me-4" style="font-size: 16px;">
+					<a class="myA" ng-click="goToRelation('followers')">{{profile.followerNo}}
+						Follower</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="container mt-2" scroll-on-bottom="loadPage()">
+		<div ng-repeat="item in list | orderBy: '-tweet.created'">
+			<list-content item="item" comment=commentModal(item)
+				quote="quoteModal(item)" delete="deleteTweet(item)"></list-content>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="commentModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content border border-2">
+			<div class="modal-body bg-white">
+				<reply-content item="item" type="type"></reply-content>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="quoteModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content border border-2">
+			<div class="modal-body bg-white">
+				<reply-content item="item" type="type"></reply-content>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="profileModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content border border-2">
+			<div class="modal-body bg-white">
+				<div class="row justify-content-center">
+					<img class="rounded-circle" id="image"
+						ngf-select="onloadPhoto($file)"
+						ng-src="{{newSrc || profile.image.photo || '/app/img/profile.png'}}"
+						style="width: 250px; height: 225px;" alt="" src="">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="d-flex justify-content-end">
+					<button type="button" class="btn text-secondary rounded-pill"
+						ng-click="cancel()">Cancel</button>
+					<button type="button" class="btn text-danger rounded-pill"
+						ng-click="deletePhoto()">Delete</button>
+					<button type="button" class="btn text-success rounded-pill"
+						ng-click="savePhoto()">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+

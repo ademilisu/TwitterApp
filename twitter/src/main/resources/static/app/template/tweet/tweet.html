@@ -1,0 +1,47 @@
+<div class="modal-dialog modal-md mt-0">
+	<div class="modal-content border border-2">
+		<div class="modal-body bg-white">
+			<message-template tweet="item.tweet" limit="limit"
+				profileimagesize="25" cancel="delete()" disabletext="true"
+				hidedismiss="true"></message-template>
+			<tweet-bar tweet="item.tweet" like="like(item)" liked="item.liked"
+				retweeted="item.retweeted" retweet="retweet(item)"
+				quote="quoteModal(item)"></tweet-bar>
+		</div>
+		<hr>
+		<div class="container">
+			<div class="text-start">
+				<p class="text-muted">
+					Replying to <a class="myA">{{item.tweet.account.name}}</a>
+				</p>
+			</div>
+			<reply-content hidetarget="true" item="newReply" type="type"></reply-content>
+		</div>
+		<div ng-repeat="t in list | orderBy: '-tweet.created'">
+			<list-content item="t" account="account" commentpage="true"
+				hidetarget="true" comment=commentModal(t) quote="quoteModal(t)"
+				delete="delete(t)"></list-content>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="commentModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-body bg-white">
+				<reply-content item="new" commentpage="true" type="type"></reply-content>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="quoteModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-body bg-white">
+				<reply-content item="new" commentpage="true" type="type"></reply-content>
+			</div>
+		</div>
+	</div>
+</div>
+

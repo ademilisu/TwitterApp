@@ -1,0 +1,24 @@
+<div class="container">
+	<message-template tweet="item.tweet" typemessage="typeMessage"
+		file="loadedFile" limit="limit" profileimagesize="25"
+		disable="disable" cancel="dismiss()"></message-template>
+	<div ng-hide="hidetarget" class="ms-1 me-1 border border-2 myBorder">
+		<div class="ms-3 me-3 mt-2 mb-2">
+			<message-template tweet="item.tweet.target" profileimagesize="15"
+				disabletext="true" hidedismiss="true"></message-template>
+		</div>
+	</div>
+	<div class="d-flex justify-content-between mt-2">
+		<div class="d-flex flex-row align-items-center">
+			<a class="btn btn-rounded" ngf-select="selectImage($file)"><i
+				class="fa-solid fa-image fa-2x text-primary"></i></a>
+		</div>
+		<div class="d-flex justify-content-end" ng-hide="hidedismiss">
+			<div class="d-flex flex-row align-items-center">
+				<span class="text-primary me-2">{{limit}}</span>
+				<button type="button" ng-disabled="disable"
+					class="btn btn-primary rounded-pill" ng-click="send()">Reply</button>
+			</div>
+		</div>
+	</div>
+</div>

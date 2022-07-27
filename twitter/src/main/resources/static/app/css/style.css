@@ -1,0 +1,69 @@
+.select {
+	cursor: pointer;
+}
+
+.mybtn {
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+.mybtn:hover {
+	opacity: 1;
+}
+
+body {
+	overflow-y: scroll;
+}
+
+addScroll {
+	overflow-y: scroll;
+}
+
+.table-responsive {
+	max-height: 550px;
+}
+
+.side {
+	position: fixed;
+}
+
+.myBorder {
+	border-radius: 20px;
+}
+
+.fontHeader {
+	font-family: Arial, Helvetica;
+	font-size: 23px;
+}
+
+textarea {
+	border: none;
+	background-color: transparent;
+	resize: none;
+	outline: none;
+	overflow: hidden;
+}
+
+.myHover:hover {
+	cursor: pointer;
+	transition: 0.5s;
+	background-color: #F2F2F2;
+}
+
+.relation {
+	background-color: #EEEEEE;
+}
+
+.myFooter:hover {
+	cursor: pointer;
+	transition: 0.4s;
+	background-color: #DADADA;
+}
+
+.myA {
+	text-decoration: none;
+}
+
+.myA:hover {
+	cursor: pointer
+}

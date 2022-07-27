@@ -1,0 +1,42 @@
+<div class="container px-5 py-2">
+	<p style="font-size: 20px;">
+		<a class="btn rounded-circle text-secondary mybtn" ng-click="back()">
+			<i class="fa-solid fa-arrow-left fa-2x"> </i>
+		</a><strong>{{profile.name}}</strong>
+	</p>
+	<div class="d-flex justify-content-evenly">
+		<div class="col myFooter text-center mt-2 mb-2"
+			ng-class="followersSection ? 'relation' : bg-white"
+			ng-click="showFollowers()">
+			<p class="text-dark mt-2" style="font-size: 18px;">Followers</p>
+		</div>
+		<div class="col myFooter text-center mt-2 mb-2"
+			ng-class="followingSection ? 'relation' : bg-white"
+			ng-click="showFollowing()">
+			<p class="text-dark mt-2" style="font-size: 18px;">Following</p>
+		</div>
+	</div>
+	<table class="table table-responsive table-borderless table-hover">
+		<tbody class="text-center">
+			<tr ng-repeat="item in list | relationFilter: type">
+				<td><img
+					ng-src="{{item.account.image.photo || '/app/img/profile.png'}}"
+					alt="" width="32" height="32" class="rounded-circle me-2"
+					ng-click="goToProfile(item.account)"></td>
+				<td ng-click="goToProfile(item.account)">{{item.account.name}}</td>
+				<td ng-show="id != 'me'">
+					<button ng-show="item.follow && item.account.id != account.id"
+						class="btn btn-sm btn-outline-danger rounded-pill"
+						style="width: 80x;" ng-click="unfollow(item)">Unfollow</button>
+					<button ng-show="!item.follow && item.account.id != account.id"
+						class="btn btn-sm btn-outline-primary rounded-pill"
+						style="width: 80x;" ng-click="follow(item)">Follow</button>
+				</td>
+				<td ng-show="id == 'me'">
+					<button class="btn btn-sm btn-outline-danger rounded-pill"
+						style="width: 80x;" ng-click="unfollow(item.account)">Unfollow</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
