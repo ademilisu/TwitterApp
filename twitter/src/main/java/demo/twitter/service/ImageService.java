@@ -24,23 +24,24 @@ public class ImageService {
 	}
 
 	public Image save(Account account, MultipartFile file, String img) {
-		Image image = new Image();
-		if (account.getImage() != null) {
-			image = account.getImage();
-		} else {
-			image.setAccount(account);
-		}
-		if (file != null) {
-			image = buildImage(account.getId(), image, file);
-		} else {
-			if (img.equals("default")) {
+		if (file != null || img.equals("default")) {
+			Image image = account.getImage();
+			if (image == null) {
+				image = new Image();
+				image.setAccount(account);
+			}
+			if (file != null) {
+				image = buildImage(account.getId(), image, file);
+			} else {
 				if (image.getPhoto() != null) {
 					delete(image);
+					image.setPhoto(null);
 					image = imageRepo.save(image);
 				}
 			}
+			return image;
 		}
-		return image;
+		return null;
 	}
 
 	public Image buildImage(String id, Image image, MultipartFile file) {

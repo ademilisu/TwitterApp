@@ -155,7 +155,7 @@ public class TweetService {
 
 	public TweetDto newCommentAndQuote(Account account, TweetDto tweetDto, String type) {
 		Tweet tweet = tweetDto.getTweet();
-		Tweet target = tweet.getTarget();
+		Tweet target = findTweet(tweet.getTarget().getId());
 		if (type.equals("comment")) {
 			tweet.setType(Type.COMMENT);
 			target.setCommentNo(target.getCommentNo() + 1);
@@ -163,9 +163,9 @@ public class TweetService {
 			tweet.setType(Type.QUOTE);
 			target.setRetweetNo(target.getRetweetNo() + 1);
 		}
-		target = update(target);
 		tweet.setTarget(target);
 		tweet = save(account, tweet);
+		target = update(target);
 		tweetDto.setTweet(tweet);
 		return tweetDto;
 	}
@@ -224,21 +224,16 @@ public class TweetService {
 			}
 			Set<Tweet> tweets = tweetRepo.findAllByTarget(tweet);
 			if (tweets != null) {
-				Tweet t = new Tweet();
-				t.setContent("Tweet not available");
-				t.setId(UUID.randomUUID().toString());
-				t.setAccount(tweet.getAccount());
-				t.setType(Type.DELETED);
-				t = update(t);
-				for (Tweet temp : tweets) {
-					temp.setTarget(t);
-					update(temp);
-				}
+				tweet.setType(Type.DELETED);
+				tweet.setContent("Tweet not avaliable");
+				update(tweet);
+			}
+			if (tweets == null) {
+				delete(id);
 			}
 			if (tweet.getImage() != null) {
 				imageService.delete(tweet.getImage());
 			}
-			delete(id);
 		}
 	}
 
